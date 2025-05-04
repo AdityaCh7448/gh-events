@@ -3,7 +3,18 @@ on:
   pull_request:  # event
     types:       # keyword used to specify activity type
       - opened   #activity type
-  workflow_dispatch:    
+    branches:      # used to specify branches targeted to run workflow
+      - master    
+      - 'dev-*'    # e.g dev-new , dev-this-is-new
+      - 'feat/**'  # e.g feat/new , feat/new/button       
+  workflow_dispatch:
+  push:
+    branches:      # used to specify branches targeted to run workflow
+      - master    
+      - 'dev-*'    # e.g dev-new , dev-this-is-new
+      - 'feat/**'  # e.g feat/new , feat/new/button
+    paths :
+      - '.github/workflows/*' # workflow will only be triggered if atleast one file changed from this path folder      
 jobs:
   deploy:
     runs-on: ubuntu-latest        # github runner
