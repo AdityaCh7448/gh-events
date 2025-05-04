@@ -1,15 +1,19 @@
-name: Events Demo 1
-on: ...
+name: Events Demo 1        # name of the workflow
+on: 
+  pull_request:  # event
+    types:       # keyword used to specify activity type
+      - opened   #activity type
+  workflow_dispatch:    
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest        # github runner
     steps:
       - name: Output event data
         run: echo "${{ toJSON(github.event) }}"
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3   # uses keyword used to specify action
       - name: Install dependencies
-        run: npm ci
+        run: npm ci           # run keyword is used to specify powershell commands
       - name: Test code
         run: npm run test
       - name: Build code
